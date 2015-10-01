@@ -6,24 +6,35 @@ for (i=2; i <= num; i++) {
 }
 console.log(F.slice(1));
 
-/*
-var _ = require('lodash');
-var __ = require('immutable');
-var __natural = __.Range(0);
 
-var num = 100;
+// How About This
+// in js
 
-var fib = _.memoize(function(i) {
-  return i <= 1 ? 1 : fib(i - 1) + fib(i - 2);
-});
+var generateFib;
 
-// function fib(i) {
-//   return i <= 1 ? 1 : fib(i - 1) + fib(i - 2);
-// }
+generateFib = function(list, limit) {
+  list.push(list[list.length - 1] + list[list.length - 2]);
+  if (list.length >= limit) {
+    return console.log(list);
+  } else {
+    return generateFib(list, limit);
+  }
+};
 
+generateFib([1, 2], 10);
 
-var __fib = __natural.map(fib);
-var __fibnum = __fib.take(num);
+// in coffee script
+generateFib([1, 2], 10);
+generateFib = (list, limit) ->
+  list.push(list[list.length - 1] + list[list.length - 2])
+  if list.length >= limit then console.log(list) else generateFib(list, limit)
 
-console.log(__fibnum.toArray());//calcurate and output
-*/
+generateFib([1, 2], 10)
+
+//in ruby
+def generate_fib(list, limit)
+  list << list[-1] + list[-2]
+  list.size >= limit ? list : generate_fib(list, limit)
+end
+
+generate_fib([1, 2], 10)
